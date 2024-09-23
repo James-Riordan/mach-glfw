@@ -17,8 +17,9 @@ pub const Mods = packed struct(u8) {
 
     inline fn verifyIntType(comptime IntType: type) void {
         comptime {
-            switch (@typeInfo(IntType)) {
-                .Int => {},
+            const type_info = @typeInfo(IntType);
+            switch (type_info) {
+                .int => {}, // The type is an integer, do nothing
                 else => @compileError("Int was not of int type"),
             }
         }
